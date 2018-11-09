@@ -1,0 +1,53 @@
+{
+	"danmu": {
+		"properties": {
+			"id": {
+				"type": "text"
+			},
+			"username": {
+				"type": "text",
+				"analyzer": "ik_smart",
+				"search_analyzer": "ik_smart",
+				"fields": {
+					"keyword": {
+						"type": "keyword",
+						"ignore_above": 256
+					}
+				}
+			},
+			"content": {
+				"type": "text",
+				"analyzer": "ik_smart",
+				"search_analyzer": "ik_smart",
+				"fields": {
+					"keyword": {
+						"type": "keyword",
+						"ignore_above": 256
+					}
+				}
+			},
+			"romeid": {
+				"type": "text",
+				"analyzer": "ik_smart",
+				"search_analyzer": "ik_smart",
+				"fields": {
+					"keyword": {
+						"type": "keyword",
+						"ignore_above": 256
+					}
+				}
+			},
+			"title": {
+				"type": "text",
+				"analyzer": "ik_smart",
+				"search_analyzer": "ik_smart",
+				"fields": {
+					"keyword": {
+						"type": "keyword",
+						"ignore_above": 256
+					}
+				}
+			}
+		}
+	}
+}

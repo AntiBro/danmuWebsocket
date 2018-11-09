@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.crawler.storage.dao.DanMuDTOMapper">
+  <resultMap id="BaseResultMap" type="com.crawler.storage.dto.DanMuDTO">
+    <result column="id" jdbcType="VARCHAR" property="id" />
+    <result column="createtime" jdbcType="TIMESTAMP" property="createtime" />
+    <result column="website" jdbcType="VARCHAR" property="website" />
+    <result column="userid" jdbcType="VARCHAR" property="userid" />
+    <result column="username" jdbcType="VARCHAR" property="username" />
+    <result column="content" jdbcType="VARCHAR" property="content" />
+    <result column="romeid" jdbcType="VARCHAR" property="romeid" />
+    <result column="romename" jdbcType="VARCHAR" property="romename" />
+   <result column="rometype" jdbcType="CHAR" property="rometype" javaType="com.crawler.storage.dto.RomeType" typeHandler="com.crawler.storage.dto.typehander.RomeTypeHander"/>
+   <!--  <result column="rometype" property="rometype"  typeHandler="com.crawler.douyu.dto.typehander.RomeTypeHander"/>  -->
+    <result column="romeurl" jdbcType="VARCHAR" property="romeurl" />
+  </resultMap>
+ <insert id="insertRecord" parameterType="com.crawler.storage.dto.DanMuDTO">
+    insert into danmu (id, createtime, website, 
+      userid, username, content, 
+      romeid, romename, rometype, 
+      romeurl)
+    values (#{id,jdbcType=VARCHAR}, #{createtime,jdbcType=TIMESTAMP}, #{website,jdbcType=VARCHAR}, 
+      #{userid,jdbcType=VARCHAR}, #{username,jdbcType=VARCHAR}, #{content,jdbcType=VARCHAR}, 
+      #{romeid,jdbcType=VARCHAR}, #{romename,jdbcType=VARCHAR}, #{rometype,jdbcType=CHAR,javaType=com.crawler.storage.dto.RomeType,typeHandler=com.crawler.storage.dto.typehander.RomeTypeHander},
+      #{romeurl,jdbcType=VARCHAR})
+  </insert>
+    <!-- 
+  <insert id="insertSelective" parameterType="com.crawler.douyu.dto.DanMuDTO">
+    insert into danmu
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="createtime != null">
+        createtime,
+      </if>
+      <if test="website != null">
+        website,
+      </if>
+      <if test="userid != null">
+        userid,
+      </if>
+      <if test="username != null">
+        username,
+      </if>
+      <if test="content != null">
+        content,
+      </if>
+      <if test="romeid != null">
+        romeid,
+      </if>
+      <if test="romename != null">
+        romename,
+      </if>
+      <if test="rometype != null">
+        rometype,
+      </if>
+      <if test="romeurl != null">
+        romeurl,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="createtime != null">
+        #{createtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="website != null">
+        #{website,jdbcType=VARCHAR},
+      </if>
+      <if test="userid != null">
+        #{userid,jdbcType=VARCHAR},
+      </if>
+      <if test="username != null">
+        #{username,jdbcType=VARCHAR},
+      </if>
+      <if test="content != null">
+        #{content,jdbcType=VARCHAR},
+      </if>
+      <if test="romeid != null">
+        #{romeid,jdbcType=VARCHAR},
+      </if>
+      <if test="romename != null">
+        #{romename,jdbcType=VARCHAR},
+      </if>
+      <if test="rometype != null">
+        #{rometype},
+      </if>
+      <if test="romeurl != null">
+        #{romeurl,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert> -->
+  
+  <select id="queryById" resultMap="BaseResultMap" parameterType="com.crawler.storage.dto.DanMuDTO">
+  select * from danmu where id=#{id}
+  </select>
+  
+  <select id="getTotalCount" resultType="java.lang.Integer">
+  select count(*) from danmu
+  </select>
+    <select id="queryAll" resultMap="BaseResultMap">
+  select * from danmu
+  </select>
+</mapper>
